@@ -40,4 +40,20 @@ public class Row {
 			}
 		});
 	}
+	
+	public boolean areConsecutive(Row a) {
+		
+		if(this.start == a.stop +1) {
+			return true;
+		}
+		if(this.stop == a.start -1) {
+			return true;
+		}
+		return false;
+	}
+	public boolean haveEqualCodes(Row a) {
+		
+		return this.statusCode==a.statusCode && this.transferCode==a.transferCode;
+	}
+	
 }

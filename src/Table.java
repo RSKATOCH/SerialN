@@ -26,6 +26,10 @@ public class Table {
 		
 	}
 	
+	public void updateStatus() {
+		
+	}
+	
 	public void sortRows() {
 		Row.sort(this.Rows);
 	}
