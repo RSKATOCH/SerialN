@@ -4,24 +4,13 @@ import java.util.List;
 
 public class Row extends Range {
 
-	protected int start;
-	protected int stop;
 	protected int statusCode;
 	protected int transferCode;
 
 	public Row(int start, int stop, int statusCode, int transferCode) {
-		this.start = start;
-		this.stop = stop;
+		super(start,stop);
 		this.statusCode = statusCode;
 		this.transferCode = transferCode;
-	}
-
-	protected int getStart() {
-		return this.start;
-	}
-
-	protected int getStop() {
-		return this.stop;
 	}
 
 	protected int getStatusCode() {
@@ -36,16 +25,16 @@ public class Row extends Range {
 		Collections.sort(rows, new Comparator<Row>() {
 			@Override
 			public int compare(Row o1, Row o2) {
-				return o1.getStart() - o2.getStart();
+				return o1.getLo() - o2.getLo();
 			}
 		});
 	}
 	public boolean areConsecutive(Row a) {
 
-		if(this.start == a.stop +1) {
+		if(this.getLo() == a.getHi() +1) {
 			return true;
 		}
-		if(this.stop == a.start -1) {
+		if(this.getHi() == a.getLo() -1) {
 			return true;
 		}
 		return false;
@@ -57,7 +46,7 @@ public class Row extends Range {
 	}
 	
 	public String toString(){
-		return start + " " + stop + " " + (char)(statusCode+65) + " " + transferCode;
+		return getLo() + " " + getHi() + " " + (char)(statusCode+65) + " " + transferCode;
 	}
 }
 

@@ -15,7 +15,7 @@ public class Table {
 	}
 	
 	public Table(List<Row> rows) {
-		this.start = rows.get(0).start;
+		this.start = rows.get(0).getLo();
 		this.rows = rows;		
 	}
 	
@@ -25,12 +25,12 @@ public class Table {
 		this.rows = new ArrayList<>();		
 	}
 	
-	public void mergeRows(int start, int end) {
-		
+	public void mergeRows() {
+
 	}
 	
 	public void divideRows() {
-		
+
 	}
 	
 	public void sortRows() {
@@ -40,17 +40,17 @@ public class Table {
 	private int getStartIndex(Row row){
 		boolean checkStart = true;
 		int startIndex = -2;
-		if(row.start < start){
+		if(row.getLo() < start){
 			startIndex = -1;
 			checkStart = false;
 		}
-		if(row.start > stop){
+		if(row.getLo() > stop){
 			checkStart = false;
 			startIndex = rows.size();
 		}
 		int i;
 		for(i=0; i<rows.size() && checkStart; i++){
-			if(start > rows.get(i).start){
+			if(start > rows.get(i).getLo()){
 				startIndex = i;
 				break;
 			}
@@ -61,17 +61,17 @@ public class Table {
 	private int getStopIndex(Row row){
 		boolean checkStop = true;
 		int stopIndex = -2;
-		if(row.stop > stop){
+		if(row.getHi() > stop){
 			stopIndex = rows.size();
 			checkStop = false;
 		}
-		if(row.stop < start){
+		if(row.getHi() < start){
 			checkStop = false;
 			stopIndex = -1;
 		}
 		int i;
 		for(i=0; i<rows.size() && checkStop; i++){
-			if(stop < rows.get(i).stop){
+			if(stop < rows.get(i).getHi()){
 				stopIndex = i;
 				break;
 			}
@@ -89,12 +89,11 @@ public class Table {
 			//SOME ERROR
 			System.out.println("Error. Undesirable case");
 		}
-		System.out.println(startIndex+""+stopIndex);
 		
 	}
 	
 	public void print(String caseName){
-		;
+
 	}
 	
 }
