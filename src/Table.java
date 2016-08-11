@@ -18,20 +18,31 @@ public class Table {
 		this.Rows = rows;		
 	}
 	
-	public void mergeRows() {
-		
+	public Table() {
+		this.start = 0;
+		this.Rows = new ArrayList<>();		
+	}
+	
+	public void mergeRows(int start, int end) {
+		for(Row r : Rows) {
+			
+		}
 	}
 	
 	public void divideRows() {
 		
 	}
 	
-	public void updateStatus() {
+	public void sortRows() {
+		Row.sort(this.Rows);
+	}
+	
+	public void addRow(Row row){
 		
 	}
 	
-	public void sortRows() {
-		Row.sort(this.Rows);
+	public void print(String caseName){
+		;
 	}
 	
 }
