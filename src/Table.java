@@ -24,11 +24,11 @@ public class Table {
 	}
 	
 	public void mergeRows() {
-		
+
 	}
 	
 	public void divideRows() {
-		
+
 	}
 	
 	public void sortRows() {
@@ -40,7 +40,7 @@ public class Table {
 	}
 	
 	public void print(String caseName){
-		;
+
 	}
 	
 }
