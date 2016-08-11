@@ -40,4 +40,8 @@ public class Row {
 			}
 		});
 	}
+	
+	public String toString(){
+		return start + " " + stop + " " + (char)(statusCode+65) + " " + transferCode;
+	}
 }

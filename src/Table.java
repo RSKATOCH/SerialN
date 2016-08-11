@@ -18,6 +18,11 @@ public class Table {
 		this.Rows = rows;		
 	}
 	
+	public Table() {
+		this.start = 0;
+		this.Rows = new ArrayList<>();		
+	}
+	
 	public void mergeRows() {
 		
 	}
@@ -28,6 +33,14 @@ public class Table {
 	
 	public void sortRows() {
 		Row.sort(this.Rows);
+	}
+	
+	public void addRow(Row row){
+		//Check overlaps here;
+	}
+	
+	public void print(String caseName){
+		;
 	}
 	
 }
