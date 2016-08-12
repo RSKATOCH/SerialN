@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 class SerialN {
 	
-	public static String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXY";
+	public static String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	
 	public static void main(String[] args) {
 		inputBasedExecute();
@@ -35,10 +35,11 @@ class SerialN {
 	
 	
 	public static void debug() {
+		// First Test Case
 		List<Row> rowList = new ArrayList<>();
 		rowList.add(new Row(1,100000,1,1));
-		
 		Table t = new Table(rowList);
+
 		
 		t.addRow(new Row(1,100000, getCharacterIndex("A"), 1));
 		System.out.println(t);
@@ -48,6 +49,16 @@ class SerialN {
 		System.out.println(t);
 		t.addRow(new Row(12345,12345, getCharacterIndex("B"), 2));
 		
+		System.out.println(t+"\n\n");
+		/*// Second Test Case
+		rowList = new ArrayList<>();
+		rowList.add(new Row(1, 1000, getCharacterIndex("A"), 1));
+		t = new Table(rowList);
+		System.out.println(t);
+		t.addRow(new Row(100, 150, getCharacterIndex("A"), 2));
+		System.out.println(t);
+		t.addRow(new Row(100, 150, getCharacterIndex("A"), 1));
+		*/
 		System.out.println(t);
 	}
 	
