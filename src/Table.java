@@ -46,7 +46,7 @@ public class Table {
 		for (int i=0; i<this.rows.size()-1; i++) {
 			Row row1 = this.rows.get(i);
 			Row row2 = this.rows.get(i+1);
-			if (row1.haveEqualCodes(row2) && row1.classify(row2) == Range.Classes.DISJOINT) {
+			if (row1.haveEqualCodes(row2) && row1.classify(row2) == Range.Classes.DISJOINT && row1.getHi()+1==row2.getLo()) {
 				Row row = new Row(row1.getLo(), row2.getHi(), row1.statusCode, row1.transferCode);
 				this.rows.remove(row1);
 				this.rows.remove(row2);
@@ -128,9 +128,14 @@ public class Table {
 		
 		/* if the new row is the new first row it needs to be updated*/
 		this.sortRows();
+
+		//System.out.println(this);
 		//this.mergeRows();
 		this.mergeRows();
+		//System.out.println(this);
 		this.cleanRows();
+
+		//System.out.println(this);
 		this.start = rows.get(0).getLo();
 		this.stop = rows.get(rows.size()-1).getHi();
 	}
