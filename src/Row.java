@@ -46,7 +46,7 @@ public class Row extends Range {
 	}
 	
 	public String toString(){
-		return getLo() + " " + getHi() + " " + (char)(statusCode+65) + " " + transferCode;
+		return getLo() + " " + getHi() + " " + (char)(statusCode+64) + " " + transferCode;
 	}
 }
 

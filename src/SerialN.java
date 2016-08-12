@@ -35,15 +35,25 @@ class SerialN {
 	
 	
 	public static void debug() {
+		// First Test Case
 		List<Row> rowList = new ArrayList<>();
 		rowList.add(new Row(1,100000,1,1));
-		
 		Table t = new Table(rowList);
-		
 		t.addRow(new Row(12345,12345, getCharacterIndex("A"), 1));
+		System.out.println(t+"\n\n");
 		t.addRow(new Row(12345,12345, getCharacterIndex("B"), 2));
+		System.out.println(t+"\n\n");
 		t.addRow(new Row(1000001,1999999, getCharacterIndex("Z"), 99));
+		System.out.println(t);
 		
+		// Second Test Case
+		rowList = new ArrayList<>();
+		rowList.add(new Row(1, 1000, getCharacterIndex("A"), 1));
+		t = new Table(rowList);
+		System.out.println(t);
+		t.addRow(new Row(100, 150, getCharacterIndex("A"), 2));
+		System.out.println(t);
+		t.addRow(new Row(100, 150, getCharacterIndex("A"), 1));
 		System.out.println(t);
 	}
 	
