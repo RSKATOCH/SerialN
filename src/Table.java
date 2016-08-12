@@ -29,6 +29,21 @@ public class Table {
 		Row.sort(this.rows);
 	}
 	
+	public void mergeRows() {
+		for (int i=0; i<this.rows.size()-1; i++) {
+			Row row1 = this.rows.get(i);
+			Row row2 = this.rows.get(i+1);
+			if (row1.haveEqualCodes(row2) && row1.classify(row2) == Range.Classes.DISJOINT) {
+				Row row = new Row(row1.getLo(), row2.getHi(), row1.statusCode, row1.transferCode);
+				this.rows.remove(row1);
+				this.rows.remove(row2);
+				i-=1;
+				this.rows.add(row);
+				this.sortRows();
+			}
+		}
+	}
+	
 	public void addRow(Row row){
 		//Check overlaps here;
 		List<Row> updateList = new ArrayList<>();
@@ -49,8 +64,7 @@ public class Table {
 			} else if(r.classify(row) == Range.Classes.LESSOVERLAP) {
 				/*Add the new one from lo to hi and then add the remaining elements of old row after that*/
 				updateList.add(row);
-				updateList.add(new Row(row.getLo(),row.getHi(),row.getStatusCode(),row.getTransferCode()));
-				
+				updateList.add(new Row(row.getLo(),row.getHi(),row.getStatusCode(),row.getTransferCode()));	
 				updateList.add(new Row(row.getHi()+1,r.getHi(),r.getStatusCode(),r.getTransferCode()));
 				added = true;
 			} else if(r.classify(row) == Range.Classes.MOREOVERLAP) {
@@ -75,6 +89,7 @@ public class Table {
 		
 		/* if the new row is the new first row it needs to be updated*/
 		this.sortRows();
+		this.mergeRows();
 		this.start = rows.get(0).getLo();
 		this.stop = rows.get(rows.size()-1).getHi();
 	}
