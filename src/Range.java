@@ -3,7 +3,7 @@ public class Range {
 	private int hi;
 	private int lo;
 	
-	public Range(int hi, int lo) {
+	public Range(int lo, int hi) {
 		this.hi = hi;
 		this.lo = lo;
 	}
@@ -16,23 +16,23 @@ public class Range {
 		return lo;
 	}
 	
-	private boolean equals(Range other) {
+	protected boolean equals(Range other) {
 		return (this.hi == other.hi && this.lo == other.lo);
 	}
 	
-	private boolean subset(Range other) {
+	protected boolean subset(Range other) {
 		return (this.hi >= other.hi && this.lo <= other.lo);
 	}
 	
-	private boolean disjoint(Range other) {
+	protected boolean disjoint(Range other) {
 		return (this.lo > other.hi || this.hi < other.lo);
 	}
 	
-	private boolean lessOverlap(Range other) {
+	protected boolean lessOverlap(Range other) {
 		return (this.lo >= other.lo && this.hi < other.hi);
 	}
 	
-	private boolean moreOverlap(Range other) {
+	protected boolean moreOverlap(Range other) {
 		return (this.lo > other.lo && this.hi >= other.hi);
 	}
 	

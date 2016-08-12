@@ -33,20 +33,13 @@ class SerialN {
 		Table t = new Table(rowList);
 		
 		t.addRow(new Row(12345,12345,2,1));
+		t.addRow(new Row(12345,12345,2,2));
+		t.addRow(new Row(1000001,1999999,25,99));
 		
-		rowList.add(new Row(12345,12345,2,1));
-		
-		t.addRow(new Row(12345,12345,2,1));
-		
-		rowList.add(new Row(12000,12999,1,2));
-		rowList.add(new Row(12345,12345,2,2));
-		rowList.add(new Row(10000,100000,3,2));
-		rowList.add(new Row(1000000,1999999,25,99));
-		
-		for(Row r: t.rows) {
+		/*for(Row r: t.rows) {
 			System.out.println(r);
 		}
-		/*
+		
 		1 100000 A 1
 		12345 12345 B 1
 		12000 12999 A 2
