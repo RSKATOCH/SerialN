@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 class SerialN {
 	
+	public static String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXY";
+	
 	public static void main(String[] args) {
 		debug();
 	}
@@ -26,15 +28,22 @@ class SerialN {
 		}
 		s.close();
 	}
+	
+	private static int getCharacterIndex(String s) {
+		return ALPHABET.indexOf(s)+1;
+	}
+	
+	
 	public static void debug() {
 		List<Row> rowList = new ArrayList<>();
 		rowList.add(new Row(1,100000,1,1));
 		
 		Table t = new Table(rowList);
 		
-		t.addRow(new Row(12345,12345,2,1));
-		t.addRow(new Row(12345,12345,2,2));
-		t.addRow(new Row(1,1999999,25,99));
+		t.addRow(new Row(12345,12345, getCharacterIndex("A"), 1));
+		t.addRow(new Row(12345,12345, getCharacterIndex("B"), 2));
+		t.addRow(new Row(1000001,1999999, getCharacterIndex("Z"), 99));
+
 		
 		System.out.println(t);
 	}
