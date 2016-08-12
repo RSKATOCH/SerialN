@@ -21,7 +21,7 @@ public class Range {
 	}
 	
 	protected boolean subset(Range other) {
-		return (this.hi >= other.hi && this.lo <= other.lo);
+		return (this.hi > other.hi && this.lo < other.lo);
 	}
 	
 	protected boolean disjoint(Range other) {
