@@ -25,95 +25,32 @@ public class Table {
 		this.rows = new ArrayList<>();		
 	}
 	
-	public void mergeRows() {
-
-	}
-	
-	public void divideRows() {
-
-	}
-	
 	public void sortRows() {
 		Row.sort(this.rows);
 	}
-	
-	private int getStartIndex(Row row){
-		boolean checkStart = true;
-		int startIndex = -2;
-		if(row.getLo() < start){
-			startIndex = -1;
-			checkStart = false;
-		}
-		if(row.getLo() > stop){
-			checkStart = false;
-			startIndex = rows.size();
-		}
-		int i;
-		for(i=0; i<rows.size() && checkStart; i++){
-			if(start > rows.get(i).getLo()){
-				startIndex = i;
-				break;
-			}
-		}
-		return startIndex;
-	}
-	
-	private int getStopIndex(Row row){
-		boolean checkStop = true;
-		int stopIndex = -2;
-		if(row.getHi() > stop){
-			stopIndex = rows.size();
-			checkStop = false;
-		}
-		if(row.getHi() < start){
-			checkStop = false;
-			stopIndex = -1;
-		}
-		int i;
-		for(i=0; i<rows.size() && checkStop; i++){
-			if(stop < rows.get(i).getHi()){
-				stopIndex = i;
-				break;
-			}
-		}
-		return stopIndex;
-	}
-	/*
-	public void addRow(Row row){
-		//Check overlaps here;
-		
-		int startIndex = getStartIndex(row);
-		int stopIndex = getStopIndex(row);
-		
-		if(startIndex == -2 || stopIndex == -2){
-			//SOME ERROR
-			System.out.println("Error. Undesirable case");
-		}
-		
-	}*/
 	
 	public void addRow(Row row){
 		//Check overlaps here;
 		List<Row> updateList = new ArrayList<>();
 		boolean added = false;
 		for(Row r : rows) {
-			if(r.disjoint(row)) {
+			if(r.classify(row) == Range.Classes.DISJOINT) {
 				updateList.add(r);
-			} else if(r.equals(row)) {
+			} else if(r.classify(row) == Range.Classes.EQUAL) {
 				/*Just add the new one*/
 				updateList.add(new Row(row.getLo(),row.getHi(),row.getStatusCode(),row.getTransferCode()));
 				added = true;
-			}	else if(r.lessOverlap(row)) {
+			}	else if(r.classify(row) == Range.Classes.LESSOVERLAP) {
 				/*Add the new one from lo to hi and then add the remaining elements of old row after that*/
 				updateList.add(new Row(row.getLo(),row.getHi(),row.getStatusCode(),row.getTransferCode()));
 				updateList.add(new Row(row.getHi()+1,r.getHi(),r.getStatusCode(),r.getTransferCode()));
 				added = true;
-			} else if(r.moreOverlap(row)) {
+			} else if(r.classify(row) == Range.Classes.MOREOVERLAP) {
 				/*Add the old one from its lo to new one's lo-1 which are not overlapped, add the new row*/
 				updateList.add(new Row(r.getLo(),row.getLo()-1,r.getStatusCode(),r.getTransferCode()));
 				updateList.add(new Row(row.getLo(),row.getHi(),row.getStatusCode(),row.getTransferCode()));
 				added = true;
-			} else if(r.subset(row)) {
+			} else if(r.classify(row) == Range.Classes.SUBSET) {
 				/*If it is a subset we get 3 breakdowns*/
 				updateList.add(new Row(r.getLo(),row.getLo()-1,r.getStatusCode(),r.getTransferCode()));
 				updateList.add(new Row(row.getLo(),row.getHi(),row.getStatusCode(),row.getTransferCode()));
@@ -134,6 +71,14 @@ public class Table {
 	
 	public void print(String caseName){
 
+	}
+	
+	public String toString() {
+		String s = "";
+		for (Row r : this.rows) {
+			s += r.toString() + "\n";
+		}
+		return s;
 	}
 	
 }
