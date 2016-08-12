@@ -34,7 +34,7 @@ class SerialN {
 		
 		t.addRow(new Row(12345,12345,2,1));
 		t.addRow(new Row(12345,12345,2,2));
-		t.addRow(new Row(1000001,1999999,25,99));
+		t.addRow(new Row(1,1999999,25,99));
 		
 		System.out.println(t);
 	}
