@@ -22,9 +22,10 @@ class SerialN {
 			System.out.println(testCase);
 			while(!((lineTokens = s.nextLine().split(" ")).length == 1 && lineTokens[0].charAt(0) == '0')){
 				Row row = new Row(Integer.parseInt(lineTokens[0]), Integer.parseInt(lineTokens[1]), (int)(lineTokens[2].charAt(0)-'A'), Integer.parseInt(lineTokens[3]));
-				System.out.println(row);
+				//System.out.println(row);
 				table.addRow(row);
 			}
+			System.out.println(table);
 		}
 		s.close();
 	}
